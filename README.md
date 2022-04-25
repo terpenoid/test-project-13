@@ -10,7 +10,7 @@ Categories are organized in a tree structure (with nested sets).
 
 * ``/api/categories`` - return a list (tree) of all *categories* and *products* inside
 * ``/api/categories/flat`` - the same, but as flat array
-* ``/api/category/{id}`` - return the category by ID and all children as sub-tree
+* ``/api/category/{id}`` - return the category by ID with *ancestors* list and all children as sub-tree
 * ``/api/category/{id}/flat`` - the same, but as flat array
 
 * ``/api/products`` - return a list of all *products* with related *categories*
@@ -18,6 +18,8 @@ Categories are organized in a tree structure (with nested sets).
 
 ### POST methods (creating)
 
+* ``/api/products`` - search in *product* list. (``query`` field is mandatory, "%" symbol is allowed)
+* ``/api/categories`` - search in *categories* list. (``query`` field is mandatory, "%" symbol is allowed)
 * ``/api/category`` - create new *category* instance. (``title`` and ``parend_id`` fields are mandatory)
 * ``/api/product`` - create new *product* instance. (``name`` and ``price`` fields are mandatory)
 

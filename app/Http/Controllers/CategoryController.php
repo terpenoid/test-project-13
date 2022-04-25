@@ -14,9 +14,18 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        return Category::select('id', 'parent_id', 'title', '_lft', '_rgt')->with(['products' => function ($query) {
-            $query->select('id', 'name', 'price');
-        }])->get()->toTree();
+        return Category::with(['products'])->get()->toTree();
+    }
+
+    /**
+     * Display a listing of the resource as tree.
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $queryString = $request->all()['query'];
+        return Category::where('title', 'like', $queryString)->with(['products', 'children'])->get();
     }
 
     /**
@@ -26,9 +35,7 @@ class CategoryController extends Controller
      */
     public function indexFlat(Request $request)
     {
-        return Category::select('id', 'parent_id', 'title', '_lft', '_rgt')->with(['products' => function ($query) {
-            $query->select('id', 'name', 'price');
-        }])->get();
+        return Category::with(['products'])->get();
     }
 
     /**
@@ -39,9 +46,7 @@ class CategoryController extends Controller
      */
     public function show(int $id)
     {
-        return Category::select('id', 'parent_id', 'title', '_lft', '_rgt')->with(['products' => function ($query) {
-            $query->select('id', 'name', 'price');
-        }])->descendantsAndSelf($id)->toTree()->first();
+        return Category::with(['products', 'ancestors'])->descendantsAndSelf($id)->toTree()->first();
     }
 
     /**
@@ -52,9 +57,7 @@ class CategoryController extends Controller
      */
     public function showFlat(int $id)
     {
-        return Category::select('id', 'parent_id', 'title', '_lft', '_rgt')->with(['products' => function ($query) {
-            $query->select('id', 'name', 'price');
-        }])->descendantsAndSelf($id);
+        return Category::with(['products', 'ancestors'])->descendantsAndSelf($id);
     }
 
     /**

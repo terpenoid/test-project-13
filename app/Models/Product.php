@@ -14,7 +14,7 @@ class Product extends Model
      * Hiding Attributes From JSON
      * @var string[]
      */
-    protected $hidden = ['pivot'];
+    protected $hidden = ['pivot', 'created_at', 'updated_at'];
 
     /**
      * Fillable array of attributes

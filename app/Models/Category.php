@@ -16,7 +16,7 @@ class Category extends Model
      * Hiding Attributes From JSON
      * @var string[]
      */
-    protected $hidden = ['pivot'];
+    protected $hidden = ['pivot', 'created_at', 'updated_at'];
 
     /**
      * Fillable array of attributes
@@ -30,5 +30,10 @@ class Category extends Model
     public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class);
+    }
+
+    public function breadcrumb(): array
+    {
+        return [1, 2, 3];
     }
 }

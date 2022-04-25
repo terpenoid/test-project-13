@@ -14,9 +14,19 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Product::select('id', 'name', 'price')->with(['categories' => function ($query) {
-            $query->select('id', 'parent_id', 'title');
-        }])->select('id', 'name', 'price')->get();
+        return Product::with(['categories'])->get();
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $queryString = $request->all()['query'];
+        return Product::where('name', 'like', $queryString)->with(['categories'])->get();
     }
 
     /**
@@ -27,9 +37,7 @@ class ProductController extends Controller
      */
     public function show(int $id)
     {
-        return Product::with(['categories' => function ($query) {
-            $query->select('id', 'parent_id', 'title');
-        }])->select('id', 'name', 'price')->findOrFail($id);
+        return Product::with(['categories'])->findOrFail($id);
     }
 
     /**
