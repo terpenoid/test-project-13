@@ -6,32 +6,25 @@ Categories are organized in a tree structure (with nested sets).
 
 ## Routes 
 
-### GET methods
+### Categories
 
-* ``/api/categories`` - return a list (tree) of all *categories* and *products* inside
-* ``/api/categories/flat`` - the same, but as flat array
-* ``/api/category/{id}`` - return the category by ID with *ancestors* list and all children as sub-tree
-* ``/api/category/{id}/flat`` - the same, but as flat array
+* ``GET: /api/categories`` - return a list (tree) of all *categories* and *products* inside
+* ``GET: /api/categories/flat`` - the same, but as flat array
+* ``GET: /api/category/{id}`` - return the category by ID with *ancestors* list and all children as sub-tree
+* ``GET: /api/category/{id}/flat`` - the same, but as flat array
+* ``POST: /api/categories`` - search in *categories* list. (``query`` field is mandatory, "%" symbol is allowed)
+* ``POST: /api/category`` - create new *category* instance. (``title`` and ``parend_id`` fields are mandatory)
+* ``PUT: /api/category/{id}`` - update existing *category* by ID. (``title`` and ``parend_id`` fields are mandatory)
+* ``DELETE: /api/category/{id}`` - delete existing *category* by ID.
 
-* ``/api/products`` - return a list of all *products* with related *categories*
-* ``/api/product/{id}`` - return the product by ID and all related *categories*
+### Products
 
-### POST methods (creating)
-
-* ``/api/products`` - search in *product* list. (``query`` field is mandatory, "%" symbol is allowed)
-* ``/api/categories`` - search in *categories* list. (``query`` field is mandatory, "%" symbol is allowed)
-* ``/api/category`` - create new *category* instance. (``title`` and ``parend_id`` fields are mandatory)
-* ``/api/product`` - create new *product* instance. (``name`` and ``price`` fields are mandatory)
-
-### PUT methods (updating)
-
-* ``/api/category/{id}`` - update existing *category* by ID. (``title`` and ``parend_id`` fields are mandatory)
-* ``/api/product/{id}`` - update existing *product* by ID. (``name`` and ``price`` fields are mandatory)
-
-### DELETE methods (deleting)
-
-* ``/api/category/{id}`` - delete existing *category* by ID.
-* ``/api/product/{id}`` - delete existing *product* by ID
+* ``GET: /api/products`` - return a list of all *products* with related *categories*
+* ``GET: /api/product/{id}`` - return the product by ID and all related *categories*
+* ``POST: /api/products`` - search in *product* list. (``query`` field is mandatory, "%" symbol is allowed)
+* ``POST: /api/product`` - create new *product* instance. (``name`` and ``price`` fields are mandatory)
+* ``PUT: /api/product/{id}`` - update existing *product* by ID. (``name`` and ``price`` fields are mandatory)
+* ``DELETE: /api/product/{id}`` - delete existing *product* by ID
 
 ## Tests
 
