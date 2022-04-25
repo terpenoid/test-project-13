@@ -1,0 +1,22 @@
+Samples to get the following data:
+
+a)
+Q: For a given list of products, get the names of all categories in which products are presented;
+A: with `GET: /products` we'll get full list with products and categories for each of them
+
+b)
+Q: For a given category, get a list of offers for all products from this category and its child categories;
+A: fast and simple - `GET /category/{id}/flat` - we'll get flat array with current subtree and products inside. then just `foreach`.
+
+c)
+Q: For a given list of categories, get the number of product offers in each category;
+A: since each of categories can have own subtree of children, I guess the best solution is getting info for each (by `GET: /category/{id}/flat`) and then merge it.
+   or, of course, if that request will be necessary often - we can add special endpoint for it (with the same as above just inside)
+
+d)
+Q: For a given list of categories, get the total number of unique product offers;
+A: the same as paragraph `c`
+
+e)
+Q: For a given category, get its full path in the tree (breadcrumb).
+A: with `GET: /category/{id}` we'll get the full category info with ancestors-array also. then just `foreach`.

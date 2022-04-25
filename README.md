@@ -38,3 +38,7 @@ Categories are organized in a tree structure (with nested sets).
 Several examples of tests were added here. A lot can be added also.
 
 You can use ``composer test`` for running the tests. 
+
+## Samples
+
+Samples to get the following data are presented in ``examples.txt``
